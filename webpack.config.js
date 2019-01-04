@@ -20,11 +20,29 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
+          loader: 'babel-loader'
+          // babel 的配置可以直接写在下面也可以写到 .babelrc 文件内
+          // options: {
+          //   presets: ['@babel/preset-env', '@babel/preset-react'],
+          //   plugins: ['@babel/plugin-proposal-class-properties']
+          // }
         }
+      },
+      {
+        test: /(\.css|\.scss)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
+        ]
       }
     ]
   },
