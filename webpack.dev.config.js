@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 // 前提项目下安装了 webpack
 const webpack = require('webpack')
@@ -6,7 +7,7 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   output: {
-    filename: 'bundle.js',
+    filename: '[hash:5].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   devServer: {
@@ -48,5 +49,11 @@ module.exports = {
     ]
   },
   // 启用热加载
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './public/index.html'
+    })
+  ]
 }

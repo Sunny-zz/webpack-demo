@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1>hello webpack</h1>
+          <h1>hello1 webpack</h1>
           <span className='count'>{this.state.num}</span>
           <button onClick={this.add}>+</button>
           <button>-----</button>
