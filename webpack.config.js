@@ -12,6 +12,7 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     port: 3000,
+    historyApiFallback: true,
     hot: true
   },
   module: {
@@ -24,12 +25,12 @@ module.exports = {
           // babel 的配置可以直接写在下面也可以写到 .babelrc 文件内
           // options: {
           //   presets: ['@babel/preset-env', '@babel/preset-react'],
-          //   plugins: ['@babel/plugin-proposal-class-properties']
+          //   plugins: ['@babel/plugin-proposal-class-properties',"react-hot-loader/babel"]
           // }
         }
       },
       {
-        test: /(\.css|\.scss)$/,
+        test: /\.(css|scss)$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
