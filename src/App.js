@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './app.scss'
+import './app.css'
 import pic from './img/1.jpg'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import Main from './Main'

@@ -1,6 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // 前提项目下安装了 webpack
 // const webpack = require('webpack')
 module.exports = {
@@ -33,11 +34,24 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
-        ]
+        // use: [
+        //   { loader: 'style-loader' },
+        //   { loader: 'css-loader' },
+        //   { loader: 'sass-loader' }
+        // ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'sass-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer'), require('cssnano')]
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -56,6 +70,9 @@ module.exports = {
       filename: 'index.html',
       template: './public/index.html'
     }),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextPlugin({
+      filename: 'css/index.css'
+    })
   ]
 }
